@@ -1,0 +1,12 @@
+@use './themeVariables' as themes;
+
+@function themed($key, $fallback: null) {
+  @if map.has-key(themes.$themes, $key) {
+    @return map-get(themes.$themes, $key);
+  } @else if $fallback != null {
+    @warn "The theme key `#{$key}` was not found. Using fallback color.";
+    @return $fallback;
+  } @else {
+    @error "The theme key `#{$key}` was not found, and no fallback color was provided.";
+  }
+}

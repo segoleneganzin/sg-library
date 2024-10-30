@@ -1,0 +1,16 @@
+$breakpoints: (
+  small-mobile: 360px,
+  medium-mobile: 425px,
+  large-mobile: 585px,
+  tablet: 768px,
+  laptop: 1024px,
+  desktop: 1440px,
+  large-desktop: 1920px,
+);
+
+$radius: (
+  small: 5px,
+  medium: 10px,
+  large: 100px,
+  full: 100%,
+);

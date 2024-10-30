@@ -1,0 +1,72 @@
+@use 'sass:map';
+@use './themeVariables' as themes;
+@use './variables' as breakpoints;
+
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin full-screen-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin on-event {
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin media-breakpoint($type, $breakpoint) {
+  @if map.has-key(breakpoints.$breakpoints, $breakpoint) {
+    @if $type == 'min' {
+      @media screen and (min-width: #{map.get(breakpoints.$breakpoints, $breakpoint)}) {
+        @content;
+      }
+    } @else if $type == 'max' {
+      @media screen and (max-width: #{map.get(breakpoints.$breakpoints, $breakpoint)}) {
+        @content;
+      }
+    } @else {
+      @warn "Invalid type `#{$type}` provided. Use either 'min' or 'max'.";
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin themify() {
+  // Iterate over each theme and its associated styles map.
+  @each $theme, $map in themes.$themes {
+    // The '&' refers to the parent selector where the mixin is used.
+    // creates a CSS class selector for the current theme
+    .sg-modal-lib--#{$theme} & {
+      // Initialize a global variable to store the merged theme styles.
+      $theme-map: () !global;
+      // Iterate over each key-value pair in the theme's styles map.
+      @each $key, $submap in $map {
+        // Retrieve the value for the current key from the theme map.
+        $value: map.get(map.get(themes.$themes, $theme), '#{$key}');
+        // Merge the current key-value pair into the theme map.
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global; // Update the global variable with the new value.
+      }
+      // Use the content passed to the mixin (styles to apply) within the theme context.
+      @content;
+      // Reset the theme map variable to null to avoid conflicts.
+      $theme-map: null !global;
+    }
+  }
+}
