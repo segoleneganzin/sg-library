@@ -2,6 +2,8 @@
 @use './themeVariables' as themes;
 @use './variables' as breakpoints;
 
+$theme-map: null;
+
 @mixin flex-col-center {
   display: flex;
   flex-direction: column;

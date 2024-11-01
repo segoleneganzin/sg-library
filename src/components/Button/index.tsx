@@ -1,13 +1,5 @@
-import { I_Theme, defaultTheme } from '../../utils/Theme';
-
-interface I_ButtonProps {
-  handleClick: () => void;
-  classname?: string;
-  content: string | React.ReactNode;
-  ariaLabel?: string;
-  theme?: string; // Optional theme for the modal (e.g., 'light', 'dark')
-  customTheme?: Partial<I_Theme>;
-}
+import { defaultTheme } from '../../utils/Theme';
+import { I_ButtonProps } from './types';
 
 const Button: React.FC<I_ButtonProps> = ({
   handleClick,

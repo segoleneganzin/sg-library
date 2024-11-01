@@ -1,20 +1,7 @@
 import { useRef, useEffect } from 'react';
-import { I_Theme, defaultTheme } from '../../utils/Theme';
+import { defaultTheme } from '../../utils/Theme';
+import { I_ModalProps } from './types';
 import IconClose from '../icons/IconClose';
-
-interface I_ModalProps {
-  isOpen: boolean; // Indicates if the modal is open
-  toggleModal: () => void; // Function to toggle the modal's visibility
-  escapeClose?: boolean; // Allows closing the modal with the Escape key
-  overlayClickClose?: boolean; // Allows closing the modal by clicking the overlay
-  showClose?: boolean; // Shows a close button/icon
-  title?: string; // Optional title for the modal
-  btnText?: string; // Optional text for a button in the modal
-  fadeDuration?: number; // Duration for fade transition in milliseconds
-  theme?: string; // Optional theme for the modal (e.g., 'light', 'dark')
-  customTheme?: Partial<I_Theme>;
-  children: React.ReactNode; // Content to display inside the modal
-}
 
 /**
  * Modal component provides a dialog interface that can be toggled open or closed.
@@ -68,22 +55,21 @@ const Modal: React.FC<I_ModalProps> = ({
     }
   };
 
-  // Function to handle closing the modal with the Escape key
-  const handleEscKey = (event: KeyboardEvent): void => {
-    if (event.key === 'Escape' && escapeClose && isOpen) {
-      toggleModal();
-    }
-  };
-
   // Effect to handle closing the modal with the Escape key
   useEffect(() => {
+    // Function to handle closing the modal with the Escape key
+    const handleEscKey = (event: KeyboardEvent): void => {
+      if (event.key === 'Escape' && escapeClose && isOpen) {
+        toggleModal();
+      }
+    };
     if (escapeClose && isOpen) {
       document.addEventListener('keydown', handleEscKey);
       return () => {
         document.removeEventListener('keydown', handleEscKey);
       };
     }
-  }, [isOpen, escapeClose]);
+  }, [isOpen, escapeClose, toggleModal]);
 
   return (
     // Overlay of modal
