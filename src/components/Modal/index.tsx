@@ -3,7 +3,13 @@ import { I_ModalProps } from './index.types';
 import IconClose from '../icons/IconClose';
 import Button from '../Button';
 import useBodyScrollLock from './hooks/useBodyScrollLock';
-import { StyledModalOverlay, StyledModal } from './index.styles';
+import {
+  StyledModalOverlay,
+  StyledModal,
+  StyledModalTitle,
+  StyledModalCloseCross,
+  StyledModalChildren,
+} from './index.styles';
 
 /**
  * Modal component provides a dialog interface that can be toggled open or closed.
@@ -26,7 +32,7 @@ const Modal: React.FC<I_ModalProps> = ({
   fadeDuration = 0,
   children,
 }) => {
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useBodyScrollLock(isOpen);
 
@@ -61,9 +67,7 @@ const Modal: React.FC<I_ModalProps> = ({
       ref={modalRef}
       onClick={handleOverlayClick}
       data-testid='modal-parent'
-      className={`sg-library__modal sg-library__modal ${
-        isOpen ? 'sg-library__modal--open' : 'sg-library__modal--close'
-      }`}
+      className={`sg-library__modal sg-library__modal`}
       aria-hidden={!isOpen}
       $customTheme={customTheme}
       $isOpen={isOpen}
@@ -71,42 +75,42 @@ const Modal: React.FC<I_ModalProps> = ({
     >
       {/* Modal window*/}
       <StyledModal
-        className={`sg-library__modal-dialog ${
-          isOpen
-            ? 'sg-library__modal-dialog--open'
-            : 'sg-library__modal-dialog--close'
-        }`}
+        className={`sg-library__modal-dialog`}
         aria-describedby={title ? title : 'modal'}
         data-testid='modal-dialog'
         $customTheme={customTheme}
+        $isOpen={isOpen}
         $fadeDuration={fadeDuration}
       >
         {/* Optional title */}
         {title && (
-          <h2
+          <StyledModalTitle
             className='sg-library__modal-title'
             id='modalTitle'
             data-testid='modal-title'
           >
             {title}
-          </h2>
+          </StyledModalTitle>
         )}
 
         {/* Close button cross */}
         {showClose && (
-          <button
-            className='sg-library__modal-close'
+          <StyledModalCloseCross
+            className='sg-library__modal-close-cross'
             onClick={toggleModal}
-            data-testid='modal-close'
+            data-testid='modal-close-cross'
             aria-label='Close modal'
             autoFocus
+            $customTheme={customTheme}
           >
             <IconClose />
-          </button>
+          </StyledModalCloseCross>
         )}
 
         {/* Modal content */}
-        <div className='sg-library__modal-children'>{children}</div>
+        <StyledModalChildren className='sg-library__modal-children'>
+          {children}
+        </StyledModalChildren>
 
         {/* Optional button */}
         {btnText && (

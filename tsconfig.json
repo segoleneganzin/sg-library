@@ -24,8 +24,8 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "sg-library": ["node_modules/sg-library/dist"]
-    }
-
+    },
+    "typeRoots": ["node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["node_modules"],
