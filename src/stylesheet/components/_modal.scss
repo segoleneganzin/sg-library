@@ -1,9 +1,10 @@
-@use 'sass:color';
 @use '../abstracts/mixins' as *;
 
 .sg-library__modal {
   @include full-screen-fixed;
-  background-color: rgba(0, 0, 0, 0.7);
+  // @include themify() {
+  //   background-color: themed('background-color');
+  // }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,11 +20,7 @@
     visibility: hidden;
   }
   &-dialog {
-    @include themify() {
-      background-color: themed('modal-background-color');
-    }
     border: none;
-    border-radius: 10px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
       0 10px 10px -5px rgba(0, 0, 0, 0.04);
     display: grid;
@@ -48,18 +45,15 @@
     }
   }
 
-  &-title,
-  &-children {
-    @include themify() {
-      color: themed('text-color');
-    }
-  }
+  // &-title,
+  // &-children {
+  //   @include themify() {
+  //     color: themed('text-color');
+  //   }
+  // }
 
   &-title {
     grid-area: 1 / 1 / 2 / 2; // first row, first column
-    @include themify() {
-      color: themed('text-color');
-    }
     justify-self: start;
   }
 
@@ -81,28 +75,6 @@
 
   &-btn {
     grid-area: 3 / 1 / 4 / 3; // third row, all columns
-    @include themify() {
-      background-color: themed('btn-background-color');
-    }
-    border: 0;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    height: auto;
     margin: 0 auto;
-    padding: 5px 20px;
-    transition: all 0.2s;
-    width: fit-content;
-    @include on-event {
-      @include themify() {
-        background-color: color.adjust(
-          rgb(78, 93, 233),
-          $lightness: 5%,
-          $space: hsl
-        );
-        box-shadow: 0 0 5px
-          color.adjust(rgb(78, 93, 233), $lightness: -15%, $space: hsl);
-      }
-    }
   }
 }

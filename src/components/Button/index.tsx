@@ -1,33 +1,26 @@
-import { defaultTheme } from '../../utils/Theme';
-import { I_ButtonProps } from './types';
+import { StyledButton } from './index.styles';
+import { I_ButtonProps } from './index.types';
 
 const Button: React.FC<I_ButtonProps> = ({
   handleClick,
   classname = '',
   content,
   ariaLabel = '',
-  theme = 'light',
   customTheme = {},
 }) => {
-  const buttonStyle = {
-    backgroundColor: customTheme?.primary || defaultTheme.primary,
-    color: customTheme?.textColor || defaultTheme.textColor,
-    fontSize: customTheme?.fontSize || defaultTheme.fontSize,
-  };
-
   return (
-    <button
+    <StyledButton
       className={
         classname
-          ? `sg-library__btn sg-library__btn--${theme} ${classname}`
-          : `sg-library__btn sg-library__btn--${theme}`
+          ? `sg-library__btn sg-library__btn ${classname}`
+          : `sg-library__btn sg-library__btn`
       }
       onClick={handleClick}
       aria-label={ariaLabel}
-      style={buttonStyle}
+      $customTheme={customTheme} // transitional prop, not transmitted to DOM
     >
       {content}
-    </button>
+    </StyledButton>
   );
 };
 

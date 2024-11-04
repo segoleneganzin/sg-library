@@ -1,11 +1,10 @@
 @use '../abstracts/mixins' as *;
+@use 'sass:color';
 
 .sg-library__btn {
-  background-color: transparent;
   border: none;
   cursor: pointer;
+  height: auto;
+  padding: 5px 20px;
   width: fit-content;
-  @include themify() {
-    background-color: themed('btn-background-color');
-  }
 }
