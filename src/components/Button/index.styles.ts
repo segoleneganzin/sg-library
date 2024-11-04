@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import Color from 'color';
 
 export const StyledButton = styled.button<{ $customTheme: Partial<I_Theme> }>`
+  border: none;
+  cursor: pointer;
+  height: auto;
+  padding: 5px 20px;
+  width: fit-content;
   background-color: ${({ $customTheme }) =>
     $customTheme.btnBackgroundColor || defaultTheme.btnBackgroundColor};
   color: ${({ $customTheme }) =>
