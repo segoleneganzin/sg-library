@@ -6,17 +6,17 @@ const baseGeneralStyle = {
 export const generalTheme = {
   default: {
     ...baseGeneralStyle,
-    textColor: '#ffffff',
-    errorColor: 'rgb(248, 64, 64)',
+    textColor: 'rgb(255, 255, 255)', // white
+    errorColor: 'rgb(248, 64, 64)', // red
   },
   dark: {
     ...baseGeneralStyle,
-    textColor: '#ffffff',
-    errorColor: 'rgb(248, 64, 64)',
+    textColor: 'rgb(255, 255, 255)', // white
+    errorColor: 'rgb(248, 64, 64)', // red
   },
   light: {
     ...baseGeneralStyle,
-    textColor: '#000000',
-    errorColor: 'rgb(248, 64, 64)',
+    textColor: 'rgb(0, 0, 0)', // black
+    errorColor: 'rgb(248, 64, 64)', // red
   },
 };

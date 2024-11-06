@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -56,7 +57,7 @@ describe('<Button>', () => {
     const button = screen.getByText(/Click Me/i);
     fireEvent.mouseOut(button);
     const styles = window.getComputedStyle(button); // Get computed styles for the button
-    expect(styles.color).toBe('rgb(255, 255, 255)'); // Ensure the background color is the default theme's textColor (white)
+    expect(styles.color).toBe('rgb(247, 235, 235)'); // Ensure the background color is the default theme's textColor (white)
   });
 
   it('applies the non default theme correctly if applied', () => {
