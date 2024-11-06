@@ -1,15 +1,6 @@
-import { I_Theme, defaultTheme } from '../../utils/Theme';
+import { centerFlex } from '../../utils/style/styleVariables';
+import { I_Theme } from '../../utils/themes/themes.types';
 import styled, { css } from 'styled-components';
-
-const breakpoints = {
-  tablet: '768px',
-};
-
-const centerFlex = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const transitionStyles = ({
   $isOpen,
@@ -24,30 +15,28 @@ const transitionStyles = ({
   transform: ${$isOpen ? 'scale(1)' : 'scale(0.95)'};
 `;
 
-const getModalStyles = ($customTheme: Partial<I_Theme>) => {
+const getModalStyles = ($finalTheme: I_Theme) => {
   return {
-    overlayBackgroundColor:
-      $customTheme.overlayBackgroundColor ||
-      defaultTheme.overlayBackgroundColor,
-    backgroundColor:
-      $customTheme.modalBackgroundColor || defaultTheme.modalBackgroundColor,
-    textColor: $customTheme.textColor || defaultTheme.textColor,
-    fontSize: $customTheme.fontSize || defaultTheme.fontSize,
-    errorColor: $customTheme.errorColor || defaultTheme.errorColor,
-    borderRadius: $customTheme.radius || defaultTheme.radius,
-    border: $customTheme.modalBorder || defaultTheme.modalBorder,
-    boxShadow: $customTheme.modalBoxShadow || defaultTheme.modalBoxShadow,
+    overlayBackgroundColor: $finalTheme.modal.overlayBackgroundColor,
+    backgroundColor: $finalTheme.modal.backgroundColor,
+    textColor: $finalTheme.general.textColor,
+    fontSize: $finalTheme.general.fontSize,
+    errorColor: $finalTheme.general.errorColor,
+    borderRadius: $finalTheme.general.radius,
+    border: $finalTheme.modal.border,
+    boxShadow: $finalTheme.modal.boxShadow,
+    width: $finalTheme.modal.width,
   };
 };
 
 export const StyledModalOverlay = styled.div<{
-  $customTheme: Partial<I_Theme>;
+  $finalTheme: I_Theme;
   $isOpen: boolean;
   $fadeDuration: number;
 }>`
+  ${centerFlex};
   position: fixed;
   inset: 0;
-  ${centerFlex};
   height: 100vh;
   overflow-y: auto;
   z-index: 999;
@@ -56,12 +45,12 @@ export const StyledModalOverlay = styled.div<{
   transition: opacity ${(props) => props.$fadeDuration}ms ease-in-out,
     visibility 0ms ${(props) => (!props.$isOpen ? props.$fadeDuration : 0)}ms;
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  background-color: ${({ $customTheme }) =>
-    getModalStyles($customTheme).overlayBackgroundColor};
+  background-color: ${({ $finalTheme }) =>
+    getModalStyles($finalTheme).overlayBackgroundColor};
 `;
 
 export const StyledModal = styled.div<{
-  $customTheme: Partial<I_Theme>;
+  $finalTheme: I_Theme;
   $isOpen: boolean;
   $fadeDuration: number;
 }>`
@@ -69,13 +58,12 @@ export const StyledModal = styled.div<{
   flex-direction: column;
   gap: 0px 50px;
   padding: 5px 10px;
-  width: fit-content;
   min-width: 300px;
   position: relative;
   z-index: 1000;
 
   ${transitionStyles};
-  ${({ $customTheme }) => {
+  ${({ $finalTheme }) => {
     const {
       backgroundColor,
       textColor,
@@ -83,7 +71,8 @@ export const StyledModal = styled.div<{
       borderRadius,
       border,
       boxShadow,
-    } = getModalStyles($customTheme);
+      width,
+    } = getModalStyles($finalTheme);
     return css`
       background-color: ${backgroundColor};
       color: ${textColor};
@@ -91,15 +80,12 @@ export const StyledModal = styled.div<{
       border-radius: ${borderRadius};
       border: ${border};
       box-shadow: ${boxShadow};
+      width: ${width};
     `;
   }}
 
   .sg-library__modal-btn {
     margin: 0 auto 5px;
-  }
-
-  @media (min-width: ${breakpoints.tablet}) {
-    min-width: 400px;
   }
 `;
 
@@ -110,7 +96,7 @@ export const StyledModalTitle = styled.h2`
 `;
 
 export const StyledModalCloseCross = styled.button<{
-  $customTheme: Partial<I_Theme>;
+  $finalTheme: I_Theme;
 }>`
   background: none;
   border: none;
@@ -119,7 +105,7 @@ export const StyledModalCloseCross = styled.button<{
   position: absolute;
   right: 0;
   top: 5px;
-  fill: ${({ $customTheme }) => getModalStyles($customTheme).errorColor};
+  fill: ${({ $finalTheme }) => getModalStyles($finalTheme).errorColor};
 `;
 
 export const StyledModalChildren = styled.div`

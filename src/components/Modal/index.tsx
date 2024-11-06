@@ -10,11 +10,14 @@ import {
   StyledModalCloseCross,
   StyledModalChildren,
 } from './index.styles';
+import { themes } from '../../utils/themes/themes';
+import deepmerge from 'deepmerge';
 
 /**
  * Modal component provides a dialog interface that can be toggled open or closed.
  * It displays content and, by default a cross close button on top right.
  * Optionally, it can have a title, a bottom custom button text, a style theme.
+ * It is possible to add custom css for styledComponent with customTheme.
  * It is possible to unset the escape for close functionality
  * It is possible to unset the click on overlay for close functionality
  * It is possible to unset the close button
@@ -28,6 +31,7 @@ const Modal: React.FC<I_ModalProps> = ({
   showClose = true,
   title,
   btnText,
+  theme = 'default',
   customTheme = {},
   fadeDuration = 0,
   children,
@@ -43,6 +47,12 @@ const Modal: React.FC<I_ModalProps> = ({
     if (overlayClickClose && modalRef.current === event.target) {
       toggleModal();
     }
+  };
+  const appliedTheme = themes[theme];
+  const finalTheme = {
+    ...appliedTheme,
+    general: deepmerge(appliedTheme.general, customTheme.general || {}),
+    modal: deepmerge(appliedTheme.modal, customTheme.modal || {}),
   };
 
   // Effect to handle closing the modal with the Escape key
@@ -69,7 +79,7 @@ const Modal: React.FC<I_ModalProps> = ({
       data-testid='modal-parent'
       className={`sg-library__modal sg-library__modal`}
       aria-hidden={!isOpen}
-      $customTheme={customTheme} // transitional prop, not transmitted to DOM
+      $finalTheme={finalTheme} // transitional prop, not transmitted to DOM
       $isOpen={isOpen} // transitional prop, not transmitted to DOM
       $fadeDuration={fadeDuration} // transitional prop, not transmitted to DOM
     >
@@ -78,7 +88,7 @@ const Modal: React.FC<I_ModalProps> = ({
         className={`sg-library__modal-dialog`}
         aria-describedby={title ? title : 'modal'}
         data-testid='modal-dialog'
-        $customTheme={customTheme} // transitional prop, not transmitted to DOM
+        $finalTheme={finalTheme} // transitional prop, not transmitted to DOM
         $isOpen={isOpen} // transitional prop, not transmitted to DOM
         $fadeDuration={fadeDuration} // transitional prop, not transmitted to DOM
       >
@@ -101,7 +111,7 @@ const Modal: React.FC<I_ModalProps> = ({
             data-testid='modal-close-cross'
             aria-label='Close modal'
             autoFocus
-            $customTheme={customTheme} // transitional prop, not transmitted to DOM
+            $finalTheme={finalTheme} // transitional prop, not transmitted to DOM
           >
             <IconClose />
           </StyledModalCloseCross>
@@ -118,7 +128,7 @@ const Modal: React.FC<I_ModalProps> = ({
             handleClick={toggleModal}
             classname='sg-library__modal-btn'
             content={btnText}
-            customTheme={customTheme}
+            customTheme={finalTheme}
           />
         )}
       </StyledModal>

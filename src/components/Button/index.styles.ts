@@ -1,27 +1,25 @@
-import { defaultTheme, I_Theme } from '../../utils/Theme';
+import { I_Theme } from '../../utils/themes/themes.types';
 import styled, { css } from 'styled-components';
 import Color from 'color';
 
-const getButtonStyles = ($customTheme: Partial<I_Theme>) => {
+const getButtonStyles = ($finalTheme: I_Theme) => {
   return {
-    backgroundColor:
-      $customTheme.btnBackgroundColor || defaultTheme.btnBackgroundColor,
-    textColor: $customTheme.btnTextColor || defaultTheme.btnTextColor,
-    fontSize: $customTheme.fontSize || defaultTheme.fontSize,
-    borderRadius: $customTheme.radius || defaultTheme.radius,
-    border: $customTheme.btnBorder || defaultTheme.btnBorder,
-    boxShadow: $customTheme.btnBoxShadow || defaultTheme.btnBoxShadow,
+    backgroundColor: $finalTheme.button.backgroundColor,
+    textColor: $finalTheme.general.textColor,
+    fontSize: $finalTheme.general.fontSize,
+    borderRadius: $finalTheme.general.radius,
+    border: $finalTheme.button.border,
+    boxShadow: $finalTheme.button.boxShadow,
   };
 };
 
-export const StyledButton = styled.button<{ $customTheme: Partial<I_Theme> }>`
-  border: none;
+export const StyledButton = styled.button<{ $finalTheme: I_Theme }>`
   cursor: pointer;
   height: auto;
-  padding: 5px 20px;
+  padding: 10px 15px;
   width: fit-content;
-  transition: background-color 0.2s ease;
-  ${({ $customTheme }) => {
+  transition: all 0.2s ease;
+  ${({ $finalTheme }) => {
     const {
       backgroundColor,
       textColor,
@@ -29,7 +27,7 @@ export const StyledButton = styled.button<{ $customTheme: Partial<I_Theme> }>`
       borderRadius,
       border,
       boxShadow,
-    } = getButtonStyles($customTheme);
+    } = getButtonStyles($finalTheme);
     return css`
       background-color: ${backgroundColor};
       color: ${textColor};
@@ -40,8 +38,8 @@ export const StyledButton = styled.button<{ $customTheme: Partial<I_Theme> }>`
     `;
   }}
   &:hover {
-    ${({ $customTheme }) => {
-      const { backgroundColor } = getButtonStyles($customTheme);
+    ${({ $finalTheme }) => {
+      const { backgroundColor } = getButtonStyles($finalTheme);
       const color = Color(backgroundColor);
       return css`
         background-color: ${color.lighten(0.2).string()};
