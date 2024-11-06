@@ -69,18 +69,18 @@ const Modal: React.FC<I_ModalProps> = ({
       data-testid='modal-parent'
       className={`sg-library__modal sg-library__modal`}
       aria-hidden={!isOpen}
-      $customTheme={customTheme}
-      $isOpen={isOpen}
-      $fadeDuration={fadeDuration}
+      $customTheme={customTheme} // transitional prop, not transmitted to DOM
+      $isOpen={isOpen} // transitional prop, not transmitted to DOM
+      $fadeDuration={fadeDuration} // transitional prop, not transmitted to DOM
     >
       {/* Modal window*/}
       <StyledModal
         className={`sg-library__modal-dialog`}
         aria-describedby={title ? title : 'modal'}
         data-testid='modal-dialog'
-        $customTheme={customTheme}
-        $isOpen={isOpen}
-        $fadeDuration={fadeDuration}
+        $customTheme={customTheme} // transitional prop, not transmitted to DOM
+        $isOpen={isOpen} // transitional prop, not transmitted to DOM
+        $fadeDuration={fadeDuration} // transitional prop, not transmitted to DOM
       >
         {/* Optional title */}
         {title && (
@@ -101,7 +101,7 @@ const Modal: React.FC<I_ModalProps> = ({
             data-testid='modal-close-cross'
             aria-label='Close modal'
             autoFocus
-            $customTheme={customTheme}
+            $customTheme={customTheme} // transitional prop, not transmitted to DOM
           >
             <IconClose />
           </StyledModalCloseCross>

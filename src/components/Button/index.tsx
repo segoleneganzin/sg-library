@@ -10,11 +10,7 @@ const Button: React.FC<I_ButtonProps> = ({
 }) => {
   return (
     <StyledButton
-      className={
-        classname
-          ? `sg-library__btn sg-library__btn ${classname}`
-          : `sg-library__btn sg-library__btn`
-      }
+      className={classname ? `sg-library__btn ${classname}` : `sg-library__btn`}
       onClick={handleClick}
       aria-label={ariaLabel}
       $customTheme={customTheme} // transitional prop, not transmitted to DOM

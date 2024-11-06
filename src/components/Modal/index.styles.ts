@@ -65,11 +65,13 @@ export const StyledModal = styled.div<{
   $isOpen: boolean;
   $fadeDuration: number;
 }>`
-  display: grid;
-  grid-template: repeat(3, auto) / repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 0px 50px;
-  padding: 10px;
-  width: 85%;
+  padding: 5px 10px;
+  width: fit-content;
+  min-width: 300px;
+  position: relative;
   z-index: 1000;
 
   ${transitionStyles};
@@ -93,36 +95,35 @@ export const StyledModal = styled.div<{
   }}
 
   .sg-library__modal-btn {
-    grid-area: 3 / 1 / 4 / 3; // third row, all columns
-    margin: 0 auto;
+    margin: 0 auto 5px;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    max-width: 650px;
+    min-width: 400px;
   }
 `;
 
 export const StyledModalTitle = styled.h2`
-  grid-area: 1 / 1; // first row, first column
   justify-self: start;
+  max-width: 95%;
+  word-wrap: break-word;
 `;
 
 export const StyledModalCloseCross = styled.button<{
   $customTheme: Partial<I_Theme>;
 }>`
-  grid-area: 1 / 2; // first row, second column
   background: none;
   border: none;
   cursor: pointer;
   justify-self: end;
-  position: relative;
-  right: -5px;
+  position: absolute;
+  right: 0;
+  top: 5px;
   fill: ${({ $customTheme }) => getModalStyles($customTheme).errorColor};
 `;
 
 export const StyledModalChildren = styled.div`
-  grid-area: 2 / 1 / 3 / 3; // second row, all columns
   text-align: center;
-  margin-bottom: 15px;
+  padding: 15px 0;
   width: 100%;
 `;
