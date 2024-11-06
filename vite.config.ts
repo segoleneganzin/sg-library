@@ -14,6 +14,8 @@ export default defineConfig({
     globals: true, // Enables global test APIs like `describe`, `it`, etc.
     environment: 'jsdom', // Use jsdom environment for DOM-related tests
     setupFiles: './setupTests.ts',
+    include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+    exclude: ['**/coverage/**', '**/node_modules/**'],
     coverage: {
       provider: 'v8', // Use @vitest/coverage-v8 for code coverage
     },
