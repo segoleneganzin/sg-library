@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -9,6 +10,14 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react(), dts({ rollupTypes: true })],
+  test: {
+    globals: true, // Enables global test APIs like `describe`, `it`, etc.
+    environment: 'jsdom', // Use jsdom environment for DOM-related tests
+    setupFiles: './setupTests.ts',
+    coverage: {
+      provider: 'v8', // Use @vitest/coverage-v8 for code coverage
+    },
+  },
   build: {
     sourcemap: true,
     lib: {

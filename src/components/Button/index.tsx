@@ -28,6 +28,7 @@ const Button: React.FC<I_ButtonProps> = ({
       className={classname ? `sg-library__btn ${classname}` : `sg-library__btn`}
       onClick={handleClick}
       aria-label={ariaLabel}
+      data-testid='sg-library-button'
       $finalTheme={finalTheme} // transitional prop, not transmitted to the DOM
     >
       {content}

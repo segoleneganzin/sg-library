@@ -4,10 +4,10 @@ import Color from 'color';
 
 const getButtonStyles = ($finalTheme: I_Theme) => {
   return {
-    backgroundColor: $finalTheme.button.backgroundColor,
-    textColor: $finalTheme.general.textColor,
     fontSize: $finalTheme.general.fontSize,
     borderRadius: $finalTheme.general.radius,
+    backgroundColor: $finalTheme.button.backgroundColor,
+    textColor: $finalTheme.button.textColor,
     border: $finalTheme.button.border,
     boxShadow: $finalTheme.button.boxShadow,
   };

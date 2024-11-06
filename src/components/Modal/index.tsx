@@ -76,7 +76,7 @@ const Modal: React.FC<I_ModalProps> = ({
     <StyledModalOverlay
       ref={modalRef}
       onClick={handleOverlayClick}
-      data-testid='modal-parent'
+      data-testid='modal-overlay'
       className={`sg-library__modal sg-library__modal`}
       aria-hidden={!isOpen}
       $finalTheme={finalTheme} // transitional prop, not transmitted to DOM
