@@ -3,7 +3,8 @@
 [in the pipeline, loading ...]
 
 ![Static Badge](https://img.shields.io/badge/Made_with-ReactJS-blue)
-![Static Badge](https://img.shields.io/badge/Publish_on-npm-red)
+
+<!-- ![Static Badge](https://img.shields.io/badge/Publish_on-npm-red) -->
 
 <!-- 🖥 [Tester la librairie sur CodeSandBox](https://codesandbox.io/p/devbox/sg-modal-lib-test-kgm332) -->
 
@@ -56,8 +57,6 @@ yarn add sg-modal-lib
 ## Button component
 
 [See button component documentation](./docs/button.md)
-
-## Dependencies
 
 ## Dependencies
 
