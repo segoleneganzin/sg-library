@@ -1,4 +1,4 @@
-/// <reference types="vitest/config" />
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -21,7 +21,6 @@ export default defineConfig({
     },
   },
   build: {
-    sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'sg-library',
@@ -30,6 +29,8 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
+      // External dependencies that should not be bundled into the library
+      // expected to be available in the environment where the library is used
       external: ['react', 'react-dom'],
       output: {
         globals: {
@@ -38,5 +39,8 @@ export default defineConfig({
         },
       },
     },
+    outDir: 'dist',
+    sourcemap: true, // Generates source maps for debugging.
+    emptyOutDir: true, // Clears the output directory before building.
   },
 });

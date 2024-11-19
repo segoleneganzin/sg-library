@@ -4,11 +4,11 @@
 
 ![Static Badge](https://img.shields.io/badge/Made_with-ReactJS-blue)
 
-<!-- ![Static Badge](https://img.shields.io/badge/Publish_on-npm-red) -->
+![Static Badge](https://img.shields.io/badge/Publish_on-npm-red)
 
 <!-- 🖥 [Tester la librairie sur CodeSandBox](https://codesandbox.io/p/devbox/sg-modal-lib-test-kgm332) -->
 
-<!-- 🔎 [Voir la librairie sur npm](https://www.npmjs.com/package/sg-modal-lib) -->
+🔎 [Voir la librairie sur npm](https://www.npmjs.com/package/sg-library)
 
 **sg-library** is a simple and flexible React library for creating and managing many components in your web applications.
 It allows you to easily create custom component with themes and configurations.
@@ -32,7 +32,7 @@ It allows you to easily create custom component with themes and configurations.
 - **[npm](https://www.npmjs.com/)** (^10.2.4)
 - **IDE** (VSCode recommended)
 
-<!-- To install the `sg-library` library, you can use npm, pnpm or yarn :
+To install the `sg-library` library, you can use npm, pnpm or yarn :
 
 ```
 npm install sg-modal-lib
@@ -48,7 +48,7 @@ or
 
 ```
 yarn add sg-modal-lib
-``` -->
+```
 
 ## Modal component
 
@@ -68,24 +68,30 @@ yarn add sg-modal-lib
 
 ### Development Dependencies
 
-- **vite**: ^5.4.9
-- **@vitejs/plugin-react**: ^4.3.3
-- **vitest**: ^2.1.4
-- **eslint**: ^9.13.0
-- **@eslint/js**: ^9.13.0
-- **eslint-plugin-react-hooks**: ^5.0.0
-- **eslint-plugin-react-refresh**: ^0.4.13
-- **@testing-library/react**: ^16.0.1
+- **@eslint/js**: ^9.15.0
 - **@testing-library/jest-dom**: ^6.6.3
-- **typescript**: ~5.6.2
+- **@testing-library/react**: ^16.0.1
+- **@types/color**: ^4.2.0
+- **@types/jest**: ^29.5.14
+- **@types/node**: ^22.9.0
 - **@types/react**: ^18.3.12
 - **@types/react-dom**: ^18.3.1
 - **@types/styled-components**: ^5.1.34
-- **jsdom**: ^25.0.1
-- **vite-plugin-dts**: ^4.3.0
-- **rollup-plugin-typescript2**: ^0.36.0
+- **@vitejs/plugin-react**: ^4.3.3
+- **@vitest/coverage-v8**: ^2.1.5
 - **color**: ^4.2.3
 - **deepmerge**: ^4.3.1
+- **eslint**: ^9.15.0
+- **eslint-plugin-react-hooks**: ^5.0.0
+- **eslint-plugin-react-refresh**: ^0.4.14
+- **glob**: ^11.0.0
+- **globals**: ^15.12.0
+- **jsdom**: ^25.0.1
+- **typescript**: ~5.6.3
+- **typescript-eslint**: ^8.15.0
+- **vite**: ^5.4.11
+- **vite-plugin-dts**: ^4.3.0
+- **vitest**: ^2.1.5
 
 ## Authors
 
