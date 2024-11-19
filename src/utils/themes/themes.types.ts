@@ -1,4 +1,4 @@
-export type T_theme = 'default' | 'dark' | 'light';
+export type T_theme = 'dark' | 'light';
 
 export interface I_Theme {
   general: {

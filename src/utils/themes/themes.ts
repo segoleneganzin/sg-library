@@ -4,11 +4,6 @@ import { modalTheme } from './modalTheme';
 import { buttonTheme } from './buttonTheme';
 
 export const themes: { [key in T_theme]: I_Theme } = {
-  default: {
-    general: generalTheme.default,
-    modal: modalTheme.default,
-    button: buttonTheme.default,
-  },
   dark: {
     general: generalTheme.dark,
     modal: modalTheme.dark,

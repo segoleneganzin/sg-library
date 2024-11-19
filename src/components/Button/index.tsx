@@ -11,10 +11,10 @@ const Button: React.FC<I_ButtonProps> = ({
   classname = '',
   content,
   ariaLabel = '',
-  theme = 'default',
+  theme,
   customTheme = {},
 }) => {
-  const appliedTheme = themes[theme];
+  const appliedTheme = themes[theme || 'light'];
 
   // Merge the applied theme with any custom theme passed, allowing for customizations
   const finalTheme = {

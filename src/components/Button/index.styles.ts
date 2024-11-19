@@ -16,7 +16,7 @@ const getButtonStyles = ($finalTheme: I_Theme) => {
 export const StyledButton = styled.button<{ $finalTheme: I_Theme }>`
   cursor: pointer;
   height: auto;
-  padding: 10px 15px;
+  padding: 5px 15px;
   width: fit-content;
   transition: all 0.2s ease;
   ${({ $finalTheme }) => {

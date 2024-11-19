@@ -16,7 +16,7 @@ import deepmerge from 'deepmerge';
 /**
  * Modal component provides a dialog interface that can be toggled open or closed.
  * It displays content and, by default a cross close button on top right.
- * Optionally, it can have a title, a bottom custom button text, a style theme.
+ * Optionally, it can have a title, a bottom custom button text, a style theme (dark or light).
  * It is possible to add custom css for styledComponent with customTheme.
  * It is possible to unset the escape for close functionality
  * It is possible to unset the click on overlay for close functionality
@@ -31,7 +31,7 @@ const Modal: React.FC<I_ModalProps> = ({
   showClose = true,
   title,
   btnText,
-  theme = 'default',
+  theme,
   customTheme = {},
   fadeDuration = 0,
   children,
@@ -48,11 +48,12 @@ const Modal: React.FC<I_ModalProps> = ({
       toggleModal();
     }
   };
-  const appliedTheme = themes[theme];
+  const appliedTheme = themes[theme || 'light'];
   const finalTheme = {
     ...appliedTheme,
     general: deepmerge(appliedTheme.general, customTheme.general || {}),
     modal: deepmerge(appliedTheme.modal, customTheme.modal || {}),
+    button: deepmerge(appliedTheme.button, customTheme.button || {}),
   };
 
   // Effect to handle closing the modal with the Escape key
