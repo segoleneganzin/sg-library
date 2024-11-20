@@ -2,6 +2,9 @@ import { I_Theme } from '../../utils/themes/themes.types';
 import styled, { css } from 'styled-components';
 import Color from 'color';
 
+/**
+ * Helper function to retrieve general and button styles based on the provided theme.
+ */
 const getButtonStyles = ($finalTheme: I_Theme) => {
   return {
     fontSize: $finalTheme.general.fontSize,
@@ -13,6 +16,13 @@ const getButtonStyles = ($finalTheme: I_Theme) => {
   };
 };
 
+/**
+ * Styled button component with dynamic styles based on the provided theme.
+ * It includes hover effects, background color adjustments, and box shadow manipulation.
+ * @param {Object} props
+ * @param {I_Theme} props.$finalTheme
+ * @returns {JSX.Element}
+ */
 export const StyledButton = styled.button<{ $finalTheme: I_Theme }>`
   cursor: pointer;
   height: auto;

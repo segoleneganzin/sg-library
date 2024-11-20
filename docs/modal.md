@@ -13,19 +13,43 @@ const App = () => {
     setIsModalOpen((prevIsOpen) => !prevIsOpen);
   };
 
+  const customTheme = {
+    general: {
+      fontSize: '1rem',
+      radius: '5px',
+      errorColor: 'rgb(181, 38, 7)',
+      textColor: 'rgb(255, 255, 255)',
+    },
+    modal: {
+      width: 'fit-content',
+      border: 'none',
+      backgroundColor: 'rgb(0, 0, 0)',
+      overlayBackgroundColor: 'rgba(0, 0, 0, 0.7)',
+      boxShadow: `0 20px 30px -10px rgba(0, 0, 0, 0.3), // Stronger shadow effect for dark mode
+                0 10px 10px -5px rgba(0, 0, 0, 0.1)`,
+    },
+    button: {
+      border: 'none',
+      boxShadow: 'none',
+      textColor: 'rgb(247, 235, 235)',
+      backgroundColor: 'rgb(74, 75, 75)',
+    },
+  };
+
   return (
     <div>
       <button onClick={toggleModal}>Open Modal</button>
       <Modal
         isOpen={isModalOpen}
         toggleModal={toggleModal}
-        title='Title' /* Optionnal, default to null */
-        btnText='close' /* Optionnal, default to null */
         escapeClose={false} /* Optionnal, default to true */
         overlayClickClose={false} /* Optionnal, default to true */
         showClose={false} /* Optionnal, default to true */
+        title='Title' /* Optionnal, default to null */
+        btnText='close' /* Optionnal, default to null */
         fadeDuration={300} /* Optionnal, default to 0 */
-        styleTheme='dark' /* Optionnal, default to light */
+        theme='dark' /* Optionnal, default to light */
+        customTheme={customTheme}
       >
         <p>This is the content inside the modal!</p>
       </Modal>
@@ -50,7 +74,7 @@ The `Modal` component accepts the following props :
 | **`title`** | string | no | null | The title of the modal, displayed on top if provided. If no provided, it's not displayed. |
 | **`btnText`** | string | no | null | The text for the additionnal bottom to close the modal, if provided. If no btnText provided, no button is displayed. |
 | **`theme`** | string | no | light | Optional theme for the modal (e.g., `'light'`, `'dark'`). |
-| **`customTheme`** | object | no | {} | Allows overriding or extending default styles for general and modal themes. Accepts `general` and `modal` objects to apply custom styles on top of the chosen theme. |
+| **`customTheme`** | object | no | {} | Allows overriding or extending default styles for themes. Accepts `general`, `modal`, `button` objects to apply custom styles. |
 | **`fadeDuration`** | number | no | 0 | Number of milliseconds the fade transition takes |
 
 ### Styling

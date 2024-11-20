@@ -15,11 +15,10 @@ import deepmerge from 'deepmerge';
 
 /**
  * Modal component provides a dialog interface that can be toggled open or closed.
- * It displays content and, by default a cross close button on top right.
- * Optionally, it can have a title, a bottom custom button text, a style theme (dark or light).
- * It is possible to add custom css for styledComponent with customTheme.
- * It is possible to unset the escape for close functionality
- * It is possible to unset the click on overlay for close functionality
+ * It displays content and, by default, a close button in the top right corner.
+ * Optionally, it can have a title, a custom button text, and a theme (dark or light).
+ * Custom CSS can be applied to the modal through the `customTheme` prop.
+ * The modal can be configured to prevent closing via escape key or overlay click.
  * It is possible to unset the close button
  * It is possible to set a fade duration for smoothly diplay
  */
@@ -38,9 +37,13 @@ const Modal: React.FC<I_ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
+  // Lock body scroll when the modal is open
   useBodyScrollLock(isOpen);
 
-  // Function to handle overlay clicks to close the modal
+  /**
+   * Handles overlay click to close the modal.
+   * Closes the modal only if overlayClickClose is enabled and the click target is the overlay.
+   */
   const handleOverlayClick = (
     event: React.MouseEvent<HTMLDivElement>
   ): void => {
@@ -48,7 +51,12 @@ const Modal: React.FC<I_ModalProps> = ({
       toggleModal();
     }
   };
+
+  // Apply the selected theme, defaulting to 'light' if no theme is provided
   const appliedTheme = themes[theme || 'light'];
+
+  // Merge the selected theme with any custom theme passed as props
+  // The deepmerge function ensures that nested theme properties are merged properly
   const finalTheme = {
     ...appliedTheme,
     general: deepmerge(appliedTheme.general, customTheme.general || {}),
@@ -56,9 +64,11 @@ const Modal: React.FC<I_ModalProps> = ({
     button: deepmerge(appliedTheme.button, customTheme.button || {}),
   };
 
-  // Effect to handle closing the modal with the Escape key
+  /**
+   * Effect hook to close the modal when the Escape key is pressed.
+   * Adds and cleans up the event listener for 'keydown' events.
+   */
   useEffect(() => {
-    // Function to handle closing the modal with the Escape key
     const handleEscKey = (event: KeyboardEvent): void => {
       if (event.key === 'Escape' && escapeClose && isOpen) {
         toggleModal();

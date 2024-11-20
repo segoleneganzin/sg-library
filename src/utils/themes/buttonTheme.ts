@@ -1,17 +1,17 @@
 const baseButtonStyle = {
   border: 'none',
   boxShadow: 'none',
-  textColor: 'rgb(247, 235, 235)', // Light text color for better contrast
+  textColor: 'rgb(247, 235, 235)', // light grey
 };
 
 export const buttonTheme = {
   light: {
     ...baseButtonStyle,
-    backgroundColor: 'rgb(4, 78, 139)', // Green background color for light mode
+    backgroundColor: 'rgb(4, 78, 139)', // blue
   },
   dark: {
     ...baseButtonStyle,
-    backgroundColor: 'rgb(74, 75, 75)', // Dark gray background color
-    textColor: 'rgb(200, 200, 200)', // Light text color for better contrast
+    backgroundColor: 'rgb(74, 75, 75)', // dark grey
+    textColor: 'rgb(200, 200, 200)', // grey
   },
 };

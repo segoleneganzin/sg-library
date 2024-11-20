@@ -58,6 +58,35 @@ yarn add sg-modal-lib
 
 [See button component documentation](./docs/button.md)
 
+## Custom theme
+
+You can defined, just for one component or for all components (global declaration), custom theme :
+
+```javascript
+const customTheme = {
+  general: {
+    fontSize: '1rem',
+    radius: '5px',
+    errorColor: 'rgb(181, 38, 7)',
+    textColor: 'rgb(255, 255, 255)',
+  },
+  modal: {
+    width: 'fit-content',
+    border: 'none',
+    backgroundColor: 'rgb(0, 0, 0)',
+    overlayBackgroundColor: 'rgba(0, 0, 0, 0.7)',
+    boxShadow: `0 20px 30px -10px rgba(0, 0, 0, 0.3), // Stronger shadow effect for dark mode
+                0 10px 10px -5px rgba(0, 0, 0, 0.1)`,
+  },
+  button: {
+    border: 'none',
+    boxShadow: 'none',
+    textColor: 'rgb(247, 235, 235)',
+    backgroundColor: 'rgb(74, 75, 75)',
+  },
+};
+```
+
 ## Dependencies
 
 ### Production Dependencies

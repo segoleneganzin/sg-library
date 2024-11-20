@@ -5,18 +5,21 @@ import deepmerge from 'deepmerge';
 
 /**
  * Button component that renders a styled button with customizable themes and content.
+ * It allows applying both predefined and custom themes.
  */
 const Button: React.FC<I_ButtonProps> = ({
   handleClick,
   classname = '',
   content,
   ariaLabel = '',
-  theme,
+  theme, // Predefined theme (e.g., 'light', 'dark')
   customTheme = {},
 }) => {
+  // Apply the selected theme, defaulting to 'light' if no theme is provided
   const appliedTheme = themes[theme || 'light'];
 
-  // Merge the applied theme with any custom theme passed, allowing for customizations
+  // Merge the selected theme with any custom theme passed as props
+  // The deepmerge function ensures that nested theme properties are merged properly
   const finalTheme = {
     ...appliedTheme,
     general: deepmerge(appliedTheme.general, customTheme.general || {}),

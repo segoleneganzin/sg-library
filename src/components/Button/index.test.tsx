@@ -7,7 +7,7 @@ import Button from './index';
 describe('<Button>', () => {
   const defaultProps = {
     content: 'Click Me',
-    handleClick: vi.fn(),
+    handleClick: vi.fn(), // Mock function
   };
 
   const setup = (props = defaultProps) => {
@@ -17,7 +17,7 @@ describe('<Button>', () => {
   it('renders the button text', () => {
     setup();
     const button = screen.getByText(/Click Me/i);
-    expect(button).toBeTruthy(); // Ensure the button is rendered
+    expect(button).toBeTruthy();
   });
 
   it('calls handleClick on click', () => {
@@ -49,26 +49,26 @@ describe('<Button>', () => {
     setup(props);
     const button = screen.getByText(/Click Me/i);
     expect(button).toHaveClass('sg-library__btn'); // Ensure default class is applied
-    expect(button).toHaveClass(customClass); // Ensure custom class is applied
+    expect(button).toHaveClass(customClass);
   });
 
-  it('applies the default theme correctly', () => {
+  it('applies the light theme by default', () => {
     setup();
     const button = screen.getByText(/Click Me/i);
     fireEvent.mouseOut(button);
-    const styles = window.getComputedStyle(button); // Get computed styles for the button
-    expect(styles.color).toBe('rgb(247, 235, 235)'); // Ensure the background color is the default theme's textColor (white)
+    const styles = window.getComputedStyle(button);
+    expect(styles.color).toBe('rgb(247, 235, 235)');
   });
 
-  it('applies the non default theme correctly if applied', () => {
+  it('applies the dark theme correctly if applied', () => {
     const props = {
       ...defaultProps,
-      theme: 'light',
+      theme: 'dark',
     };
     setup(props);
     const button = screen.getByText(/Click Me/i);
-    const styles = window.getComputedStyle(button); // Get computed styles for the button
-    expect(styles.color).toBe('rgb(247, 235, 235)'); // Ensure the text color is the light theme's textColor (grey)
+    const styles = window.getComputedStyle(button);
+    expect(styles.color).toBe('rgb(200, 200, 200)');
   });
 
   it('applies the custom theme correctly', () => {
@@ -82,20 +82,20 @@ describe('<Button>', () => {
     };
     setup(props);
     const button = screen.getByText(/Click Me/i);
-    const styles = window.getComputedStyle(button); // Get computed styles for the button
-    expect(styles.fontSize).toBe('2rem'); // Ensure custom font size is applied
-    expect(styles.color).toBe('rgb(0, 0, 0)'); // Ensure custom text color (black) is applied
+    const styles = window.getComputedStyle(button);
+    expect(styles.fontSize).toBe('2rem');
+    expect(styles.color).toBe('rgb(0, 0, 0)');
   });
 
   it('combines default values and custom theme values correctly', () => {
     const customTheme = {
-      general: { fontSize: '2rem' }, // Custom font size
-      button: { textColor: 'rgb(214, 13, 13)' }, // Custom text color and background color
+      general: { fontSize: '2rem' },
+      button: { textColor: 'rgb(214, 13, 13)' },
     };
     const props = {
       ...defaultProps,
-      theme: 'light', // Default theme is light
-      customTheme, // Pass the custom theme
+      theme: 'dark',
+      customTheme,
     };
     setup(props);
     const button = screen.getByText(/Click Me/i);
@@ -104,8 +104,8 @@ describe('<Button>', () => {
     expect(styles.fontSize).toBe('2rem');
     // Check that the text color from the custom theme is applied
     expect(styles.color).toBe('rgb(214, 13, 13)');
-    // Ensure the background color from the default 'light' theme is NOT applied
-    const defaultTextColor = 'rgb(247, 235, 235)'; // Default background color for 'light' theme
+    // Ensure the text color from the 'dark' theme is NOT applied
+    const defaultTextColor = 'rgb(200, 200, 200)'; // Default text color for 'dark' theme
     expect(styles.color).not.toBe(defaultTextColor); // The custom theme should override the default background color
   });
 });

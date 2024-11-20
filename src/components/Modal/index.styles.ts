@@ -2,6 +2,9 @@ import { centerFlex } from '../../utils/style/styleVariables';
 import { I_Theme } from '../../utils/themes/themes.types';
 import styled, { css } from 'styled-components';
 
+/**
+ * Generates transition styles for the modal based on its open state and fade duration.
+ */
 const transitionStyles = ({
   $isOpen,
   $fadeDuration,
@@ -15,6 +18,9 @@ const transitionStyles = ({
   transform: ${$isOpen ? 'scale(1)' : 'scale(0.95)'};
 `;
 
+/**
+ * Helper function to retrieve general and modal styles based on the provided theme.
+ */
 const getModalStyles = ($finalTheme: I_Theme) => {
   return {
     overlayBackgroundColor: $finalTheme.modal.overlayBackgroundColor,
@@ -29,6 +35,14 @@ const getModalStyles = ($finalTheme: I_Theme) => {
   };
 };
 
+/**
+ * Styled modal overlay component with dynamic styles based on the theme and open state.
+ * @param {Object} props
+ * @param {I_Theme} props.$finalTheme
+ * @param {boolean} props.$isOpen - Whether the modal is open or closed.
+ * @param {number} props.$fadeDuration - The fade duration in milliseconds.
+ * @returns {JSX.Element}
+ */
 export const StyledModalOverlay = styled.div<{
   $finalTheme: I_Theme;
   $isOpen: boolean;
@@ -49,6 +63,14 @@ export const StyledModalOverlay = styled.div<{
     getModalStyles($finalTheme).overlayBackgroundColor};
 `;
 
+/**
+ * Styled modal component with dynamic content layout and appearance based on the theme and open state.
+ * @param {Object} props
+ * @param {I_Theme} props.$finalTheme
+ * @param {boolean} props.$isOpen - Whether the modal is open or closed.
+ * @param {number} props.$fadeDuration - The fade duration in milliseconds.
+ * @returns {JSX.Element}
+ */
 export const StyledModal = styled.div<{
   $finalTheme: I_Theme;
   $isOpen: boolean;
@@ -89,12 +111,22 @@ export const StyledModal = styled.div<{
   }
 `;
 
+/**
+ * Styled modal title component with word wrapping and a maximum width.
+ * @returns {JSX.Element}
+ */
 export const StyledModalTitle = styled.h2`
   justify-self: start;
   max-width: 95%;
   word-wrap: break-word;
 `;
 
+/**
+ * Styled close button (cross) for the modal, with dynamic theme color.
+ * @param {Object} props
+ * @param {I_Theme} props.$finalTheme
+ * @returns {JSX.Element} The styled close button (cross).
+ */
 export const StyledModalCloseCross = styled.button<{
   $finalTheme: I_Theme;
 }>`
@@ -108,6 +140,10 @@ export const StyledModalCloseCross = styled.button<{
   fill: ${({ $finalTheme }) => getModalStyles($finalTheme).errorColor};
 `;
 
+/**
+ * Styled container for modal content with centered text and padding.
+ * @returns {JSX.Element}
+ */
 export const StyledModalChildren = styled.div`
   text-align: center;
   padding: 15px 0;
