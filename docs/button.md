@@ -4,7 +4,7 @@ Here's a basic example of how to use the `Button` component in your React applic
 
 ```javascript
 import { useState } from 'react';
-import { Modal } from 'sg-library';
+import { Button } from 'sg-library';
 
 const App = () => {
   const handleClickButton = () => {
@@ -15,8 +15,6 @@ const App = () => {
     general: {
       fontSize: '1rem',
       radius: '5px',
-      errorColor: 'rgb(181, 38, 7)',
-      textColor: 'rgb(255, 255, 255)',
     },
     button: {
       border: 'none',
@@ -29,7 +27,7 @@ const App = () => {
   return (
     <div>
       <Button
-        handleClick={toggleModal}
+        handleClick={handleClickButton}
         classname='home__btn' /* Optionnal */
         content='Click'
         ariaLabel='Open alert' /* Optionnal */

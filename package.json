@@ -1,6 +1,6 @@
 {
   "name": "sg-library",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Library to simplify components creation and management.",
   "type": "module",
   "main": "dist/sg-library.cjs.js",

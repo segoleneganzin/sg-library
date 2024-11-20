@@ -35,19 +35,19 @@ It allows you to easily create custom component with themes and configurations.
 To install the `sg-library` library, you can use npm, pnpm or yarn :
 
 ```
-npm install sg-modal-lib
+npm install sg-library
 ```
 
 or
 
 ```
-pnpm install sg-modal-lib
+pnpm install sg-library
 ```
 
 or
 
 ```
-yarn add sg-modal-lib
+yarn add sg-library
 ```
 
 ## Modal component
