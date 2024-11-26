@@ -20,4 +20,19 @@ export interface I_Theme {
     border?: string;
     boxShadow?: string;
   };
+  fieldContainer: {
+    textColor?: string;
+    border?: string;
+  };
+  field: {
+    textColor?: string;
+    border?: string;
+    backgroundColor: string;
+    borderColor: string;
+  };
+  form: {
+    textColor?: string;
+    border?: string;
+    backgroundColor: string;
+  };
 }
