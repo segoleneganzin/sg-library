@@ -1,6 +1,6 @@
 const basefieldContainerStyle = {
   border: 'none',
-  textColor: 'rgb(247, 235, 235)', // light grey
+  textColor: 'rgb(0, 0, 0)',
 };
 
 export const fieldContainerTheme = {

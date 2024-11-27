@@ -27,12 +27,12 @@ export interface I_Theme {
   field: {
     textColor?: string;
     border?: string;
-    backgroundColor: string;
-    borderColor: string;
+    backgroundColor?: string;
+    borderColor?: string;
   };
   form: {
     textColor?: string;
     border?: string;
-    backgroundColor: string;
+    backgroundColor?: string;
   };
 }

@@ -1,7 +1,7 @@
 const baseFormStyle = {
   border: 'none',
-  textColor: 'rgb(247, 235, 235)', // light grey
-  backgroundColor: 'rgb(250, 250, 250',
+  textColor: 'rgb(0, 0, 0)',
+  backgroundColor: 'rgb(250, 250, 250)',
 };
 
 export const formTheme = {

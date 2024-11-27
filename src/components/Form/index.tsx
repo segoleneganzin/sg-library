@@ -1,15 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { defaultFieldConfig } from '../../utils/formConfig/default-config';
-import OtherField from './fields/OtherField';
-import CheckField from './fields/CheckField';
 import FieldContainer from '../FieldContainer';
 import { I_FormProps } from './index.types';
-import { I_Field } from 'src/utils/generalTypes';
-import { themes } from 'src/utils/themes/themes';
+import { themes } from '../../utils/themes/themes';
 import deepmerge from 'deepmerge';
 import { StyledForm } from './index.styles';
-import Select from '../Select';
+import Field from './fields/Field';
 
 /**
  * Form component dynamically generates a form based on provided configurations.
@@ -38,7 +35,11 @@ const Form: React.FC<I_FormProps> = ({
     ...appliedTheme,
     general: deepmerge(appliedTheme.general, customTheme.general || {}),
     form: deepmerge(appliedTheme.form, customTheme.form || {}),
-    select: deepmerge(appliedTheme.field, customTheme.field || {}),
+    fieldContainer: deepmerge(
+      appliedTheme.fieldContainer,
+      customTheme.fieldContainer || {}
+    ),
+    field: deepmerge(appliedTheme.field, customTheme.field || {}),
   };
   // Destructuring properties from the useForm hook
   const {
@@ -46,6 +47,7 @@ const Form: React.FC<I_FormProps> = ({
     handleSubmit,
     setValue,
     formState: { errors },
+    reset,
   } = useForm<{ [key: string]: any }>();
 
   const form = useRef<HTMLFormElement>(null);
@@ -75,11 +77,16 @@ const Form: React.FC<I_FormProps> = ({
   const handleSubmitFunction: SubmitHandler<{ [key: string]: any }> = (
     data
   ) => {
-    const formData = fieldNames.reduce((acc, fieldName) => {
-      acc[fieldName] = data[fieldName];
-      return acc;
-    }, {} as { [key: string]: any });
-    onSubmitFunction(formData);
+    try {
+      const formData = fieldNames.reduce((acc, fieldName) => {
+        acc[fieldName] = data[fieldName];
+        return acc;
+      }, {} as { [key: string]: any });
+      onSubmitFunction(formData);
+      reset();
+    } catch {
+      console.log('An error occured, please try again');
+    }
   };
 
   /**
@@ -87,18 +94,6 @@ const Form: React.FC<I_FormProps> = ({
    */
   const fieldErrorClass = (fieldName: string): string => {
     return errors[fieldName] ? ' sg-library__form-field--error' : '';
-  };
-
-  const renderField = (field: I_Field, commonProps: any) => {
-    switch (field.type) {
-      case 'select':
-        return <Select {...commonProps} />;
-      case 'radio':
-      case 'checkbox':
-        return <CheckField {...commonProps} />;
-      default:
-        return <OtherField {...commonProps} />;
-    }
   };
 
   return (
@@ -127,6 +122,7 @@ const Form: React.FC<I_FormProps> = ({
             register,
             fieldErrorClass,
             handleChange,
+            customTheme: { finalTheme },
           };
 
           return (
@@ -135,8 +131,9 @@ const Form: React.FC<I_FormProps> = ({
               fieldName={fieldName}
               errors={errors}
               key={index}
+              customTheme={finalTheme}
             >
-              {renderField(field, commonProps)}
+              <Field field={field} commonProps={commonProps} />
             </FieldContainer>
           );
         })}

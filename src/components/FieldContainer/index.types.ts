@@ -7,6 +7,5 @@ export interface I_FieldContainerProps {
   field: I_Field;
   fieldName: string;
   errors: FieldErrors;
-  theme?: T_theme; // Optional theme for the button (e.g., 'light', 'dark')
-  customTheme?: Partial<I_Theme>; // Custom theme to override the default button styles
+  customTheme: I_Theme; // Custom theme to override the default button styles
 }

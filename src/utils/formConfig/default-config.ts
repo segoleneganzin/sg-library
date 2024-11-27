@@ -7,34 +7,40 @@ import { I_Field } from '../generalTypes';
 // label and type are always required
 export const defaultFieldConfig: { [key: string]: I_Field } = {
   email: {
+    tag: 'input',
     label: 'Email',
     type: 'email',
     pattern: /\S+@\S+\.\S+/,
     fieldErrorMessage: 'Veuillez renseigner votre email',
   },
   password: {
+    tag: 'input',
     label: 'Mot de passe',
     type: 'password',
     pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
     fieldErrorMessage: 'Veuillez renseigner votre mot de passe',
   },
   passwordConfirmation: {
+    tag: 'input',
     label: 'Confirmer le mot de passe :',
     type: 'password',
     pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
     fieldErrorMessage: 'Veuillez confirmer votre mot de passe',
   },
   name: {
+    tag: 'input',
     label: 'Nom',
     type: 'text',
     fieldErrorMessage: 'Veuillez renseigner votre nom',
   },
   age: {
+    tag: 'input',
     label: 'Âge',
     type: 'number',
     fieldErrorMessage: 'Veuillez renseigner votre âge',
   },
   tel: {
+    tag: 'input',
     label: 'Téléphone',
     type: 'text',
     fieldErrorMessage: 'Veuillez renseigner votre numéro de téléphone',
@@ -55,6 +61,7 @@ export const defaultFieldConfig: { [key: string]: I_Field } = {
 
   // radio buttons
   gender: {
+    tag: 'input',
     type: 'radio',
     label: 'Genre',
     fieldErrorMessage: 'Veuillez renseigner votre genre',
@@ -71,7 +78,7 @@ export const defaultFieldConfig: { [key: string]: I_Field } = {
   },
   // select
   country: {
-    type: 'select',
+    tag: 'select',
     label: 'Pays',
     defaultValue: 'Choisir votre pays',
     fieldErrorMessage: 'Veuillez renseigner votre pays',
@@ -92,6 +99,7 @@ export const defaultFieldConfig: { [key: string]: I_Field } = {
   },
   // checkboxes
   foodAllergies: {
+    tag: 'input',
     type: 'checkbox',
     label: 'Allergie(s) alimentaire(s)',
     isRequired: false,

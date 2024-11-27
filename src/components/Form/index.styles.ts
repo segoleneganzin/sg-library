@@ -4,20 +4,30 @@ import styled, { css } from 'styled-components';
 /**
  * Helper function to retrieve general and formField styles based on the provided theme.
  */
-const getFormStyles = ($finalTheme: I_Theme) => {
+const getFieldStyles = ($finalTheme: I_Theme) => {
   return {
     fontSize: $finalTheme.general.fontSize,
-    border: $finalTheme.fieldContainer.border,
-    textColor: $finalTheme.fieldContainer.textColor,
+    radius: $finalTheme.general.radius,
+    formTextColor: $finalTheme.form.textColor,
+    formBorder: $finalTheme.form.border,
+    inputTextColor: $finalTheme.field.textColor,
+    inputBackgroundColor: $finalTheme.field.backgroundColor,
+    inputBorder: $finalTheme.field.border,
+    inputBorderColor: $finalTheme.field.borderColor,
   };
 };
 
-/**
- * Styled formField component with dynamic styles based on the provided theme.
- * @param {Object} props
- * @param {I_Theme} props.$finalTheme
- * @returns {JSX.Element}
- */
+const sharedFieldStyles = (styles: ReturnType<typeof getFieldStyles>) => css`
+  background-color: ${styles.inputBackgroundColor};
+  color: ${styles.inputTextColor};
+  border: ${styles.inputBorder};
+  border-radius: ${styles.radius};
+  &:focus,
+  &:hover {
+    outline: 1px solid ${styles.inputBorderColor};
+  }
+`;
+
 export const StyledForm = styled.form<{ $finalTheme: I_Theme }>`
   display: flex;
   flex-direction: column;
@@ -27,11 +37,60 @@ export const StyledForm = styled.form<{ $finalTheme: I_Theme }>`
   position: relative;
   width: 100%;
   ${({ $finalTheme }) => {
-    const { textColor, fontSize, border } = getFormStyles($finalTheme);
+    const styles = getFieldStyles($finalTheme);
     return css`
-      color: ${textColor};
-      font-size: ${fontSize};
-      border: ${border};
+      color: ${styles.formTextColor};
+      font-size: ${styles.fontSize};
+      border: ${styles.formBorder};
     `;
+  }}
+`;
+
+export const StyledCheckFieldsContainer = styled.div<{ $finalTheme: I_Theme }>`
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+`;
+
+export const StyledCheckField = styled.div<{ $finalTheme: I_Theme }>`
+  display: inline-flex;
+  gap: 10px;
+  ${({ $finalTheme }) => {
+    const { formTextColor } = getFieldStyles($finalTheme);
+    return css`
+      color: ${formTextColor};
+    `;
+  }}
+`;
+
+export const StyledInput = styled.input<{ $finalTheme: I_Theme }>`
+  padding: 5px 10px;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  ${({ $finalTheme }) => {
+    const styles = getFieldStyles($finalTheme);
+    return sharedFieldStyles(styles);
+  }}
+`;
+
+export const StyledSelect = styled.select<{ $finalTheme: I_Theme }>`
+  overflow-y: scroll;
+  padding: 5px 10px;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  ${({ $finalTheme }) => {
+    const styles = getFieldStyles($finalTheme);
+    return sharedFieldStyles(styles);
+  }}
+`;
+
+export const StyledTextarea = styled.textarea<{ $finalTheme: I_Theme }>`
+  overflow-y: scroll;
+  padding: 5px 10px;
+  outline: 0;
+  width: 100%;
+  ${({ $finalTheme }) => {
+    const styles = getFieldStyles($finalTheme);
+    return sharedFieldStyles(styles);
   }}
 `;
