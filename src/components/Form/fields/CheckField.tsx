@@ -9,14 +9,14 @@ const CheckField: React.FC<I_FieldProps> = ({
   field,
   register,
   handleChange,
-  customTheme,
+  finalTheme,
 }) => {
   const { options, type, fieldClass = ' ', isRequired = true } = field;
 
   return (
     <StyledCheckFieldsContainer
       className={`sg-library__${type}s`}
-      $finalTheme={customTheme}
+      $finalTheme={finalTheme}
     >
       {options?.map((option, index) => {
         const { value, label, checked = false } = option;
@@ -25,7 +25,7 @@ const CheckField: React.FC<I_FieldProps> = ({
             key={index}
             className={`sg-library__${type} ${fieldClass}
             `}
-            $finalTheme={customTheme}
+            $finalTheme={finalTheme}
           >
             <input
               id={value}

@@ -2,7 +2,7 @@
 // default tag = input
 // default pattern = null
 
-import { I_Field } from '../generalTypes';
+import { I_Field } from './index.types';
 
 // label and type are always required
 export const defaultFieldConfig: { [key: string]: I_Field } = {

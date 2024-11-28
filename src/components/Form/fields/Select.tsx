@@ -1,4 +1,4 @@
-import { I_Option } from '../../../utils/generalTypes';
+import { I_Option } from '../index.types';
 import { I_FieldProps } from '../index.types';
 import { StyledSelect } from '../index.styles';
 
@@ -8,18 +8,20 @@ const Select: React.FC<I_FieldProps> = ({
   register,
   fieldErrorClass,
   handleChange,
-  customTheme,
+  finalTheme,
 }) => {
   const {
     options,
     fieldClass = ' ',
     isRequired = true,
     defaultValue = 'Choose an option',
+    autocomplete = 'on',
   } = field;
 
   return (
     <StyledSelect
       id={fieldName}
+      autoComplete={autocomplete}
       className={`sg-library__select ${fieldClass} ${fieldErrorClass(
         fieldName
       )}`}
@@ -31,7 +33,7 @@ const Select: React.FC<I_FieldProps> = ({
           }
         },
       })}
-      $finalTheme={customTheme}
+      $finalTheme={finalTheme}
     >
       <option value=''>{defaultValue}</option>
       {options?.map((option: I_Option, index: number) => {

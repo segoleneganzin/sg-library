@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { defaultFieldConfig } from '../../utils/formConfig/default-config';
-import FieldContainer from '../FieldContainer';
+import { defaultFieldConfig } from './default-config';
+import FieldContainer from './fields/FieldContainer';
 import { I_FormProps } from './index.types';
 import { themes } from '../../utils/themes/themes';
 import deepmerge from 'deepmerge';
@@ -96,6 +96,10 @@ const Form: React.FC<I_FormProps> = ({
     return errors[fieldName] ? ' sg-library__form-field--error' : '';
   };
 
+  if (!finalTheme) {
+    return <div>Loading...</div>; // Or some fallback UI
+  }
+
   return (
     <StyledForm
       onSubmit={handleSubmit(handleSubmitFunction)}
@@ -122,7 +126,7 @@ const Form: React.FC<I_FormProps> = ({
             register,
             fieldErrorClass,
             handleChange,
-            customTheme: { finalTheme },
+            finalTheme,
           };
 
           return (

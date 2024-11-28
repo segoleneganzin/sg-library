@@ -3,7 +3,7 @@ import Select from './Select';
 import Textarea from './Textarea';
 import CheckField from './CheckField';
 import Input from './Input';
-import { I_Field } from '../../../utils/generalTypes';
+import { I_Field } from '../index.types';
 
 interface I_FieldProps {
   field: I_Field;

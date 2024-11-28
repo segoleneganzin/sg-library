@@ -7,7 +7,7 @@ const Textarea: React.FC<I_FieldProps> = ({
   register,
   fieldErrorClass,
   handleChange,
-  customTheme,
+  finalTheme,
 }) => {
   const {
     hidden = false,
@@ -39,7 +39,7 @@ const Textarea: React.FC<I_FieldProps> = ({
           }
         },
       })}
-      $finalTheme={customTheme}
+      $finalTheme={finalTheme}
     />
   );
 };

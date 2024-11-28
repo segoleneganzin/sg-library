@@ -25,6 +25,7 @@ export interface I_Theme {
     border?: string;
   };
   field: {
+    fontSize?: string;
     textColor?: string;
     border?: string;
     backgroundColor?: string;

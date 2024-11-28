@@ -1,5 +1,5 @@
-import { StyledFieldContainer } from './index.styles';
-import { I_FieldContainerProps } from './index.types';
+import { StyledFieldContainer } from '../index.styles';
+import { I_FieldContainerProps } from '../index.types';
 
 const FieldContainer: React.FC<I_FieldContainerProps> = ({
   children,

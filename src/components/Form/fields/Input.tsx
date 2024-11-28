@@ -7,7 +7,7 @@ const Input: React.FC<I_FieldProps> = ({
   register,
   fieldErrorClass,
   handleChange,
-  customTheme,
+  finalTheme,
 }) => {
   const {
     type,
@@ -21,7 +21,6 @@ const Input: React.FC<I_FieldProps> = ({
     minLength,
     maxLength,
   } = field;
-  console.log(customTheme);
   return (
     <StyledInput
       id={fieldName}
@@ -43,7 +42,7 @@ const Input: React.FC<I_FieldProps> = ({
           }
         },
       })}
-      $finalTheme={customTheme}
+      $finalTheme={finalTheme}
     />
   );
 };
